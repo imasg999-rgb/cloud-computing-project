@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: flask
-          image: flask-crud-app   # replace with GCR image later
+          image: us-central1-docker.pkg.dev/cloud-computing-project-ece-1/flask-repo/flask-app
           ports:
             - containerPort: 5000
           env:
