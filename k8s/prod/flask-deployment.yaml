@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-prod
+spec:
+  replicas: 2   # HIGH AVAILABILITY
+  selector:
+    matchLabels:
+      app: flask-prod
+  template:
+    metadata:
+      labels:
+        app: flask-prod
+    spec:
+      containers:
+        - name: flask
+          image: flask-crud-app   # replace with GCR image later
+          ports:
+            - containerPort: 5000
+          env:
+            - name: DB_HOST
+              value: mysql-service
+            - name: DB_USER
+              value: root
+            - name: DB_PASSWORD
+              value: password
+            - name: DB_NAME
+              value: crud_db

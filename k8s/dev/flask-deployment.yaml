@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-dev
+  template:
+    metadata:
+      labels:
+        app: flask-dev
+    spec:
+      containers:
+        - name: flask
+          image: flask-crud-app
+          ports:
+            - containerPort: 5000
+          env:
+            - name: DB_HOST
+              value: mysql-service-dev
+            - name: DB_USER
+              value: root
+            - name: DB_PASSWORD
+              value: password
+            - name: DB_NAME
+              value: crud_db
